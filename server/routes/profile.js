@@ -300,6 +300,44 @@ module.exports = (db) => {
         })
     })
 
+    // POST create a new cart/transaction (returns existing pending one if present)
+    router.post("/cart/create", (req, res) => {
+        const { email } = req.body;
+        if (!email) {
+            res.status(400).json({ error: "Missing email" });
+            return;
+        }
+
+        const queryExisting = `SELECT transaction_id FROM Transactions WHERE email = ? AND status = 'pending'`;
+        const insertQuery = `INSERT INTO Transactions (email, status) VALUES (?, 'pending')`;
+
+        // Check for existing pending transaction first
+        db.get(queryExisting, [email], (err, row) => {
+            if (err) {
+                console.error(err.message);
+                res.status(500).json({ error: err.message });
+                return;
+            }
+
+            if (row && row.transaction_id) {
+                res.json({ transactionId: row.transaction_id, message: 'Existing pending transaction returned' });
+                return;
+            }
+
+            // Create new transaction
+            db.run(insertQuery, [email], function (err) {
+                if (err) {
+                    console.error(err.message);
+                    res.status(500).json({ error: err.message });
+                    return;
+                }
+
+                // this.lastID contains the inserted transaction id
+                res.json({ transactionId: this.lastID, message: 'New transaction created' });
+            });
+        });
+    })
+
     // DELETE cart item
     router.delete("/cart/item", (req, res) => {
         const { transactionId, postId } = req.body;

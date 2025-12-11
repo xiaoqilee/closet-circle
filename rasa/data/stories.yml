@@ -1,0 +1,62 @@
+version: "3.1"
+
+stories:
+
+- story: find item with type and color
+  steps:
+    - intent: find_item
+      entities:
+        - item_type
+        - color
+    - action: action_find_item
+
+- story: find item with type only
+  steps:
+    - intent: find_item
+      entities:
+        - item_type
+    - action: action_find_item
+
+- story: find item with color only
+  steps:
+    - intent: find_item
+      entities:
+        - color
+    - action: action_find_item
+
+- story: find item with item name only
+  steps:
+    - intent: find_item
+      entities:
+        - item_name
+    - action: action_find_item
+
+- story: find item with item name and color
+  steps:
+    - intent: find_item
+      entities:
+        - item_name
+        - color
+    - action: action_find_item
+
+- story: find item with item name and type
+  steps:
+    - intent: find_item
+      entities:
+        - item_name
+        - item_type
+    - action: action_find_item
+
+- story: find item with all entities
+  steps:
+    - intent: find_item
+      entities:
+        - item_name
+        - item_type
+        - color
+    - action: action_find_item
+
+- story: find item no entities
+  steps:
+    - intent: find_item
+    - action: action_find_item
