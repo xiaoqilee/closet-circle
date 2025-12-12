@@ -1,0 +1,177 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: find_item
+  examples: |
+    - find me a [red](color) [shirt](item_type)
+    - I am looking for a [blue](color) [jacket](item_type)
+    - show me [green](color) [pants](item_type)
+    - I want a [black](color) [hat](item_type)
+    - do you have any [white](color) [shoes](item_type)
+    - show me some [yellow](color) [dresses](item_type)
+    - I need a [pink](color) [scarf](item_type)
+    - find a [blue](color) [dress](item_type)
+    - I'm looking for [burgundy](color) [pants](item_type)
+    - can you find me a [navy](color) [jacket](item_type)
+    - show me [purple](color) [shoes](item_type)
+    - I want to borrow a [red](color) [sweater](item_type)
+    - what [teal](color) [skirts](item_type) do you have
+    - show me some [gray](color) [blazers](item_type)
+    - find me [striped](color) [shirts](item_type)
+    - I'm looking for casual [brown](color) [pants](item_type)
+    - do you have any [white](color) [sneakers](item_type)
+    - show me [vintage](color) [dresses](item_type)
+    - I want a [black](color) [shirt](item_type)
+    - looking for a [blue](color) [tshirt](item_type)
+    - find [black](color) [dresses](item_type)
+    - i need a [white](color) [blouse](item_type)
+    - show me [red](color) [coats](item_type)
+    - I'm looking for [green](color) [shorts](item_type)
+    - do you have [navy](color) [jeans](item_type)
+    - find me a [pink](color) [hoodie](item_type)
+    - I want [gray](color) [sweatpants](item_type)
+    - actually find me a [blue](color) [dress](item_type)
+    - what about a [red](color) [shirt](item_type) instead
+    - find me a [green](color) [jacket](item_type) instead
+    - show me [black](color) [pants](item_type) instead
+    - I'd rather have a [white](color) [blouse](item_type)
+    - can I see [navy](color) [dresses](item_type) instead
+    - let me look for a [pink](color) [skirt](item_type) instead
+    - actually I want a [brown](color) [coat](item_type)
+    - I'm looking for [Nike Dunks](item_name)
+    - do you have [Puma shoes](item_name)
+    - find me [Adidas sneakers](item_name)
+    - show me [Levi's jeans](item_name)
+    - I want [Converse](item_name)
+    - looking for [Air Jordans](item_name)
+    - can you find [Vans Old Skool](item_name)
+    - do you have any [North Face jacket](item_name)
+    - I'm interested in [Ralph Lauren polo](item_name)
+    - show me the [Champion hoodie](item_name)
+    - find [Doc Martens](item_name)
+    - looking for [Birkenstock sandals](item_name)
+    - I need [Carhartt pants](item_name)
+    - do you have [Zara dress](item_name)
+    - find me [H&M blazer](item_name)
+    - show me [Uniqlo jacket](item_name)
+    - I want the [LaMelo Ball shoes](item_name)
+    - looking for [Gildan t-shirt](item_name)
+
+- intent: book_item
+  examples: |
+    - book this item for me
+    - I would like to reserve this item
+    - please book this item
+    - can you book this item
+    - I want to book this
+    - reserve this for me
+    - can I book this item
+    - I'll take this one
+    - yes, book it
+    - proceed with booking
+    - confirm my booking
+    - let's go with this
+
+- intent: provide_item_type
+  examples: |
+    - a [shirt](item_type)
+    - [shirt](item_type)
+    - a [jacket](item_type)
+    - [jacket](item_type)
+    - [pants](item_type)
+    - [dress](item_type)
+    - a [dress](item_type)
+    - [hat](item_type)
+    - [scarf](item_type)
+    - [shoes](item_type)
+    - a pair of [shoes](item_type)
+    - I'm looking for a [dress](item_type)
+    - I want a [shirt](item_type)
+    - I need a [jacket](item_type)
+    - [sweater](item_type)
+    - [blazer](item_type)
+    - [skirt](item_type)
+    - [blouse](item_type)
+    - [shorts](item_type)
+    - [coat](item_type)
+    - [jeans](item_type)
+    - [t-shirt](item_type)
+    - [hoodie](item_type)
+    - [cardigan](item_type)
+    - maybe a [dress](item_type)
+    - something like a [jacket](item_type)
+
+- intent: provide_color
+  examples: |
+    - [red](color)
+    - [blue](color)
+    - [black](color)
+    - [white](color)
+    - [green](color)
+    - [yellow](color)
+    - [pink](color)
+    - [burgundy](color)
+    - [navy](color)
+    - [purple](color)
+    - [teal](color)
+    - [gray](color)
+    - [brown](color)
+    - [olive](color)
+    - [maroon](color)
+    - any color is fine
+    - I don't care about color
+    - no preference for color
+    - surprise me with the color
+    - whatever color
+    - I'm flexible with colors
+    - any shade is okay
+    - doesn't matter
+    - pick any color

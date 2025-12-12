@@ -1,0 +1,60 @@
+{
+  "type": "MaxHistoryTrackerFeaturizer",
+  "state_featurizer": {
+    "action_texts": [],
+    "entity_tag_specs": [],
+    "feature_states": {
+      "intent": {
+        "affirm": 0,
+        "back": 1,
+        "book_item": 2,
+        "bot_challenge": 3,
+        "deny": 4,
+        "find_item": 5,
+        "goodbye": 6,
+        "greet": 7,
+        "nlu_fallback": 8,
+        "out_of_scope": 9,
+        "provide_color": 10,
+        "provide_item_type": 11,
+        "restart": 12,
+        "session_start": 13
+      },
+      "action_name": {
+        "action_listen": 0,
+        "action_restart": 1,
+        "action_session_start": 2,
+        "action_default_fallback": 3,
+        "action_deactivate_loop": 4,
+        "action_revert_fallback_events": 5,
+        "action_default_ask_affirmation": 6,
+        "action_default_ask_rephrase": 7,
+        "action_two_stage_fallback": 8,
+        "action_unlikely_intent": 9,
+        "action_back": 10,
+        "...": 11,
+        "action_extract_slots": 12,
+        "action_find_item": 13,
+        "action_book_item": 14,
+        "utter_ask_booking_confirmation": 15,
+        "utter_ask_color": 16,
+        "utter_ask_item_type": 17,
+        "utter_booking_confirmed": 18,
+        "utter_booking_denied": 19,
+        "utter_goodbye": 20,
+        "utter_greet": 21,
+        "utter_iamabot": 22,
+        "utter_item_found": 23,
+        "utter_no_items_found": 24
+      },
+      "entities": {
+        "color": 0,
+        "item_type": 1
+      },
+      "slots": {},
+      "active_loop": {}
+    }
+  },
+  "remove_duplicates": true,
+  "max_history": 5
+}

@@ -1,0 +1,82 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm 
+  - deny 
+  - find_item
+  - book_item
+  - provide_item_type
+  - provide_color
+  - bot_challenge
+
+entities:
+  - color
+  - item_type
+  - item_name
+
+actions: 
+  - action_find_item
+  - action_book_item
+  - action_show_next_item
+
+responses:
+  utter_greet:
+  - text: "Hello! I'm Clossie, your Closet Circle assistant! How can I help you today?"
+
+  utter_goodbye:
+  - text: "Bye bye!"
+
+  utter_ask_item_type:
+  - text: "What type of item are you looking for?"
+
+  utter_ask_color:
+  - text: "What color do you prefer?"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa and used by Closet Circle."
+
+slots: 
+  color:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: color
+  item_type:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: item_type
+  selected_post_id:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  user_email:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  filtered_items:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  current_item_index:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  item_name:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: item_name
+  
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

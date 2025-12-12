@@ -5,7 +5,7 @@
 ## Project Setup
 
 
-This is a full-stack project with a **Next.js** client and a **Node.js/Express** server.
+This is a full-stack project with a **Next.js** client, a **Node.js/Express** server, and a Rasa chatbot.
 
 
 
@@ -15,7 +15,7 @@ Make sure you have the following installed on your machine:
 
 - [Node.js](https://nodejs.org/) (LTS version recommended)
 - [npm](https://www.npmjs.com/) (comes with Node.js) or [yarn](https://yarnpkg.com/)
-
+- A Python virtual environment (conda, pyenv, etc) on version 3.10 
 ---
 
 ## Getting Started
@@ -31,6 +31,20 @@ cd closet-circle
 cd client
 npm install
 ```
+#### **Installing python dependencies**
+
+Navigate to the ```root``` directory, start the python virtual environment, and install the following dependencies
+```
+conda activate <your_env_name> 
+```
+> You can also start a python virtual environment using ```source venv/bin/activate``` 
+```
+pip install rasa rasa-sdk thefuzz
+```
+
+> - **rasa** and **rasa-sdk** are libraries for the rasa chatbot 
+> - **thefuzz** is used for fuzzy comparisions between strings in the chatbot's internal logic. 
+  
 **Navigate to the ```server``` directory and install dependencies**
 ```bash
 cd ../server
@@ -50,3 +64,23 @@ In the ```server``` directory
 npm start
 ```
 This will start the Node.js/Express server. By default, it will run on [http://localhost:8800](http://localhost:8800).
+
+### 4. Running the Rasa Chatbot 
+Navigate to the ``rasa``  directory 
+```
+cd ../rasa
+```
+If this is your first time running the application, train the rasa model: 
+```
+rasa train
+```
+Start the **actions server** by running
+```
+rasa run actions
+```
+
+Start the **rasa server** by running: 
+```
+rasa run --enable-api --cors "*"
+```
+

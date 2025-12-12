@@ -1,0 +1,10 @@
+{
+  "0": "affirm",
+  "1": "book_item",
+  "2": "deny",
+  "3": "find_item",
+  "4": "goodbye",
+  "5": "greet",
+  "6": "provide_color",
+  "7": "provide_item_type"
+}
