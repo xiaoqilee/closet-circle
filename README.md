@@ -16,6 +16,7 @@ Make sure you have the following installed on your machine:
 - [Node.js](https://nodejs.org/) (LTS version recommended)
 - [npm](https://www.npmjs.com/) (comes with Node.js) or [yarn](https://yarnpkg.com/)
 - A Python virtual environment (conda, pyenv, etc) on version 3.10 
+- Ollama with ``llama3`` model pulled
 ---
 
 ## Getting Started

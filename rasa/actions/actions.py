@@ -273,7 +273,6 @@ class ActionBookItem(Action):
             dispatcher.utter_message(text="Sorry, I don't have an item selected to book. Please search for an item first.")
             return []
 
-        
         if not user_email:
             user_email = tracker.get_slot("email")
 
@@ -302,12 +301,21 @@ class ActionBookItem(Action):
 
             # add item to cart (use correct API prefix and PUT method)
             add_url = "http://localhost:8800/api/profile/cart/addItem"
+            
+          
             add_payload = {"transactionId": transaction_id, "postId": post_id}
             add_resp = requests.put(add_url, json=add_payload, timeout=5)
             add_resp.raise_for_status()
-
+            
+            
             dispatcher.utter_message(text=f"Great! I've added this item to your cart (transaction {transaction_id}). You can view your cart on the website to confirm.")
-
+            
+            cart_resp = requests.get("http://localhost:8800/api/profile/cart", params={"email": user_email}, timeout=5)
+            cart_data = cart_resp.json()
+            cart_items = cart_data.get("cart", [])
+            cart_total = sum(item.get("price", 0) for item in cart_items)
+            dispatcher.utter_message(text=f"Your cart total is now ${cart_total:.2f}.")
+            
             # Clear akl slots after booking for fresh start
             return [
                 SlotSet("selected_post_id", None),

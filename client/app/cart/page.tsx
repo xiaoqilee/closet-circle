@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0/client';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation'; // Import usePathname for route detection
 import Link from 'next/link';
 
 /* ============================================
@@ -149,6 +149,7 @@ const CartPage: React.FC = () => {
     const taxAmount = subtotal * 0.093;
     const shippingCost = subtotal >= 30 ? 0 : 5.99;
     const grandTotal = subtotal + taxAmount + shippingCost;
+    const pathname = usePathname(); // Get current pathname
 
     // Handle item removal
     const handleRemoveItem = async (id: number) => {
@@ -215,6 +216,52 @@ const CartPage: React.FC = () => {
         }
     }
 
+    // Debugging logs added to verify backend response, state updates, and calculations
+    const fetchCart = async () => {
+        if (!user) return;
+        try {
+            const response = await fetch(`http://localhost:8800/api/profile/cart?email=${user.email}`);
+            const data = await response.json();
+
+            console.log("Fetched Cart Data:", data); // Log backend response
+
+            if (!Array.isArray(data.cart)) {
+                console.error("Invalid data format:", data);
+                setCartItems([]);
+                return;
+            }
+
+            const transformed: Product[] = data.cart.map((post: any) => ({
+                id: post.post_id,
+                title: post.title,
+                price: post.price ?? 20, // Default price if not provided
+                images: post.images, // Use the images array directly
+                isRented: post.bflag === 1 && post.sflag === 0,
+            }));
+            setCartItems(transformed);
+            setCartTransactionId(data.transId);
+
+            console.log("Transformed Cart Items:", transformed); // Log transformed cart items
+        } catch (error) {
+            console.error("Error fetching cart items:", error);
+        }
+    };
+
+    // Additional debugging logs to trace the issue
+    console.log("Cart Items State:", cartItems); // Log cartItems state
+
+    const soldItems2 = cartItems.filter(item => !item.isRented);
+    console.log("Sold Items:", soldItems2); // Log soldItems array
+
+    // Debugging logs for order summary calculations
+    console.log("Subtotal:", subtotal);
+    console.log("Tax Amount:", taxAmount);
+    console.log("Shipping Cost:", shippingCost);
+    console.log("Grand Total:", grandTotal);
+
+    // Debugging logs in Order Summary JSX
+    console.log("Rendering Order Summary:", { subtotal, taxAmount, shippingCost, grandTotal });
+
     /* Fetch cart items */
     useEffect(() => {
         if (!user) return;
@@ -243,6 +290,20 @@ const CartPage: React.FC = () => {
                 setCartTransactionId(data.transId);
             })
             .catch((error) => console.log('Error fetching cart items: ', error));
+    }, [user]);
+
+    // Refetch cart data on navigation using usePathname
+    useEffect(() => {
+        fetchCart(); // Fetch the latest cart data whenever the route changes
+    }, [pathname]);
+
+    // Polling mechanism to fetch cart data periodically
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchCart(); // Fetch cart every 5 seconds
+        }, 5000);
+
+        return () => clearInterval(interval);
     }, [user]);
 
     return (
